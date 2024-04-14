@@ -40,6 +40,7 @@ function App() {
         loading={loading}
         searchText={searchText}
         setSearchText={setSearchText}
+        placeholder="Rick"
       />
     </div>
   );

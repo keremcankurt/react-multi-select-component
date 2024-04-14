@@ -10,6 +10,7 @@ export function MultiSelect(
     loading=false, 
     searchText, 
     setSearchText,
+    placeholder="search"
   }) {
   const [isOpen, setIsOpen] = useState(false)
   const [highlightedIndex, setHighlightedIndex] = useState(0)
@@ -97,7 +98,7 @@ export function MultiSelect(
               </button>
             ))}
 
-        <input placeholder="Rick" 
+        <input placeholder={placeholder}
         className={styles["search-input"]}
          type="text"
          onChange={(e) => setSearchText(e.target.value)}
