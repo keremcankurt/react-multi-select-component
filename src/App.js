@@ -1,23 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { MultiSelect } from "./components/MultiSelect";
+import CreatableSelect from "react-select/creatable";
 
 function App() {
+  const [loading, setLoading] = useState(false);
+  const [characters, setCharacters] = useState([]);
+  const [selectedCharacters, setSelectedCharacters] = useState([]);
+  const [searchText, setSearchText] = useState("");
+
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(`https://rickandmortyapi.com/api/character?name=${searchText}`);
+      if (!response.ok) {
+        setCharacters([]);
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      const simplifiedData = data.results.map(character => ({
+        id: character.id,
+        label: character.name,
+        image: character.image,
+        desc: `${character.episode.length} Episodes`
+      }));
+      setCharacters(simplifiedData);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      console.error('Error fetching data:', error);
+    }
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <MultiSelect
+        fetchData={fetchData}
+        options={characters}
+        value={selectedCharacters}
+        setValue={setSelectedCharacters}
+        loading={loading}
+        searchText={searchText}
+        setSearchText={setSearchText}
+      />
     </div>
   );
 }
