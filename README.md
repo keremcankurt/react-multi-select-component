@@ -1,7 +1,7 @@
 # Multi Select Component
 
 This is a custom multi select component built using React.
-<img src="assets/1.png" alt="1">
+<img src="public/1.png" alt="1">
 ## Features
 
 - **Dropdown Search**: Allows searching within the dropdown menu options.
