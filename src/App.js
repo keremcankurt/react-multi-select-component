@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { MultiSelect } from "./components/MultiSelect";
-import CreatableSelect from "react-select/creatable";
 
 function App() {
   const [loading, setLoading] = useState(false);

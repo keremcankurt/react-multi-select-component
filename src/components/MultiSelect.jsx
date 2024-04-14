@@ -10,7 +10,6 @@ export function MultiSelect(
     loading=false, 
     searchText, 
     setSearchText,
-    optionBadgeStyle
   }) {
   const [isOpen, setIsOpen] = useState(false)
   const [highlightedIndex, setHighlightedIndex] = useState(0)
