@@ -3,7 +3,7 @@ import styles from "./MultiSelect.module.css"
 
 export function MultiSelect(
   {
-    fetchData,
+    fetchData=() => {},
     value, 
     options, 
     setValue, 
